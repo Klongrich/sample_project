@@ -137,7 +137,7 @@ export default function Exchange () {
     const [collateral, setCollateral] = useState(1.00);
 
     const [leveragedCollateral, setLeveragedCollateral] = useState(1.00);
-    const [leveragePosistionSize, setLeveragedPosistionSize] = useState(1.00);
+    const [leveragedPosistionSize, setLeveragedPosistionSize] = useState(1.00);
 
     const [accountBalance, setAccountBalance] = useState(0);
     const [error, setError] = useState(null);
@@ -174,7 +174,6 @@ export default function Exchange () {
 
     function updateLeverage (value) {
         var newValue = parseFloat(value);
-
         setLeveragedCollateral(posistionSize * newValue);
         setLeveragedPosistionSize(CollateralSize * newValue);
         setLeverage(newValue);
@@ -244,12 +243,16 @@ export default function Exchange () {
 
                     <InputBox
                             type="text"
-                            placeholder={posistionSize}
+                            placeholder={leveragedPosistionSize}
                             onChange={e => updatePosistionSize(e.target.value)} 
                             />
+                    
+                    <div Style="margin-left: 400px;
+                                margin-top: -20px;">
+                        <img src={BUSDLogo} height="30" width="30" alt="" />
+                        <p1 Style="padding-left: 10px;">BUSD</p1>
+                    </div>
 
-                    <img src={BUSDLogo} height="30" width="30" alt="" />
-                    <p1>BUSD</p1>
                 </PosistionSize>
 
                 <div Style="margin-top: 20px;">
@@ -273,9 +276,11 @@ export default function Exchange () {
                             placeholder={leveragedCollateral}
                             onChange={e => updateCollateral(e.target.value)} 
                             />
-                    <p>MAX</p>
-                    <img src={BUSDLogo} height="30" widht="30" alt="" />
-                    <p1>BUSD</p1>
+                    <div Style="margin-left: 370px; margin-top: -10px;">
+                         MAX
+                        <img src={BUSDLogo} height="30" widht="30" alt="" />
+                        <p1 Style="padding-left: 10px;">BUSD</p1>
+                    </div>
                 </CollateralSize>
 
                 <BottomMeta>
