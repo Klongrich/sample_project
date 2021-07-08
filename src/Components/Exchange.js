@@ -144,9 +144,9 @@ export default function Exchange () {
         setPosistionSize(posistionSize * leverage);
     }
 
-    function updatePosistionSize(value) {
+    async function updatePosistionSize(value) {
         var newValue = parseFloat(value);
-
+        console.log("New Value: " + newValue);
         if (newValue < 0) {
             setError("Inputs Can Not Be Negativ")
             return false;
@@ -154,8 +154,8 @@ export default function Exchange () {
             setError("Input Can Not Be Below Account Balance")
             return false;
         } else {
-            setPosistionSize(parseFloat(value));
-            setCollateral(posistionSize * leverage);
+            setPosistionSize(newValue);
+            setCollateral(newValue * leverage);
         }
     }
 
@@ -169,8 +169,8 @@ export default function Exchange () {
             setError("Input Can Not Be Below Account Balance")
             return false;
         } else {
-            setCollateral(parseFloat(value));
-            setPosistionSize(collateral * leverage);
+            setCollateral(newValue);
+            setPosistionSize(newValue * leverage);
         }
     }
 
