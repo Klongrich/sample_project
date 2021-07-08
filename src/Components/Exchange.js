@@ -135,8 +135,11 @@ export default function Exchange () {
     const [leverage, setLeverage] = useState(1);
     const [posistionSize, setPosistionSize] = useState(1.00);
     const [collateral, setCollateral] = useState(1.00);
-    const [accountBalance, setAccountBalance] = useState(0);
 
+    const [leveragedCollateral, setLeveragedCollateral] = useState(1.00);
+    const [leveragePosistionSize, setLeveragedPosistionSize] = useState(1.00);
+
+    const [accountBalance, setAccountBalance] = useState(0);
     const [error, setError] = useState(null);
 
     async function updatePosistionSize(value) {
@@ -150,7 +153,7 @@ export default function Exchange () {
             return false;
         } else {
             setPosistionSize(newValue);
-            setCollateral(newValue * leverage);
+            setLeveragedCollateral(newValue * leverage);
         }
     }
 
@@ -172,9 +175,9 @@ export default function Exchange () {
     function updateLeverage (value) {
         var newValue = parseFloat(value);
 
+        setLeveragedCollateral(posistionSize * newValue);
+        setLeveragedPosistionSize(CollateralSize * newValue);
         setLeverage(newValue);
-        setCollateral(collateral * newValue);
-        setPosistionSize(posistionSize * newValue);
     }
 
     async function get_token_balance() {
@@ -267,7 +270,7 @@ export default function Exchange () {
 
                     <InputBox
                             type="number"
-                            placeholder={collateral}
+                            placeholder={leveragedCollateral}
                             onChange={e => updateCollateral(e.target.value)} 
                             />
                     <p>MAX</p>
