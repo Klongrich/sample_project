@@ -139,11 +139,6 @@ export default function Exchange () {
 
     const [error, setError] = useState(null);
 
-    function updateParamters() {
-        setCollateral(collateral * leverage);
-        setPosistionSize(posistionSize * leverage);
-    }
-
     async function updatePosistionSize(value) {
         var newValue = parseFloat(value);
         console.log("New Value: " + newValue);
@@ -175,8 +170,11 @@ export default function Exchange () {
     }
 
     function updateLeverage (value) {
-        setLeverage(parseFloat(value));
-        updateParamters();
+        var newValue = parseFloat(value);
+
+        setLeverage(newValue);
+        setCollateral(collateral * newValue);
+        setPosistionSize(posistionSize * newValue);
     }
 
     async function get_token_balance() {
