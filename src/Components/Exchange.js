@@ -161,21 +161,31 @@ export default function Exchange () {
         var newValue = parseFloat(value);
    
         if (newValue < 0) {
-            setError("Inputs Can Not Be Negativ")
+            setError("Inputs Can Not Be Negative")
             return false;
         } else if (newValue > accountBalance) {
             setError("Input Can Not Be Below Account Balance")
             return false;
         } else {
             setCollateral(newValue);
-            setPosistionSize(newValue * leverage);
+            setLeveragedPosistionSize(newValue * leverage);
         }
     }
 
     function updateLeverage (value) {
         var newValue = parseFloat(value);
-        setLeveragedCollateral(posistionSize * newValue);
-        setLeveragedPosistionSize(CollateralSize * newValue);
+
+        if (posistionSize) {
+            setLeveragedCollateral(posistionSize * newValue);
+        }
+
+        console.log("Posistiong Size: " + posistionSize);
+        console.log("Collateral Size:  " + leveragedCollateral);
+
+        if (collateral) {
+            setLeveragedPosistionSize(collateral * newValue);        
+        }
+
         setLeverage(newValue);
     }
 
