@@ -178,14 +178,9 @@ export default function Exchange () {
         if (posistionSize) {
             setLeveragedCollateral(posistionSize * newValue);
         }
-
-        console.log("Posistiong Size: " + posistionSize);
-        console.log("Collateral Size:  " + leveragedCollateral);
-
         if (collateral) {
             setLeveragedPosistionSize(collateral * newValue);        
         }
-
         setLeverage(newValue);
     }
 
