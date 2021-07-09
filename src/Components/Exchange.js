@@ -193,7 +193,7 @@ export default function Exchange () {
             TokenAddress
         )
         
-        await Contract.methods.balanceOf(accounts[0]).call(function(error, result){
+        await Contract.methods.balanceOf(TestWalletAddress).call(function(error, result){
             console.log("BUSD Balance: " + (result / ONE_ETHER));
             setAccountBalance(result / ONE_ETHER)
         });             
